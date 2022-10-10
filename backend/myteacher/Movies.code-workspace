@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../Movies/Movies"
+		},
+		{
+			"path": "../../frontend"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
