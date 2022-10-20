@@ -7,5 +7,4 @@ const Cabecalho = ()=>{
         </Container>
     )
 }
-
 export default Cabecalho;
