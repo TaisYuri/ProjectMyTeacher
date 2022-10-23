@@ -1,10 +1,16 @@
-import { Button } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  createStyles,
+  makeStyles,
+} from "@mui/material";
 import { Professor } from "../../@types/professor";
 import { FormatadorService } from "../../services/formatadorService";
 import {
   Box,
   Cabecalho,
-  Card,
   Descricao,
   Foto,
   Item,
@@ -28,31 +34,42 @@ const Lista = ({ data, onSelect }: ListaProps) => {
         <ListaContainer>
           {data.map((item) => (
             <ItemLista key={item.id}>
-              <Box>
-                <Cabecalho>
-                  <Titulo>
-                    Conheça {item.nome},<br />
-                    seu professor do curso.
-                  </Titulo>
-                  <Descricao>{item.descricao}</Descricao>
-                  <Button sx={{ width: "50%", borderRadius: 8 , backgroundColor:'#6f1df4'}} onClick={() => onSelect(item)}>
+             
+              <Card style={{ minWidth: 400, minHeight: 390 }}>
+                <CardContent>
+                <Box>
+                    <Foto>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={item.foto}
+                        style={{ width: 120, height: 120 }}
+                        />
+                    </Foto>
+                        <>
+                    <Valor>
+                      {`${FormatadorService.valorMonetario(item.valor_hora)}
+                  por hora`}
+                    </Valor>
+                    <Nome>{item.nome}</Nome>
+                    <Descricao>
+                      {FormatadorService.limitarTexto(item.descricao, 300)}
+                    </Descricao>
+                  
+                  </>
+                  <Button
+                    sx={{
+                      width: "50%",
+                      borderRadius: 8,
+                      backgroundColor: "#6f1df4",
+                      alignSelf: "flex-end",
+                    }}
+                    onClick={() => onSelect(item)}
+                  >
                     Marcar aula
                   </Button>
-                </Cabecalho>
-              </Box>
-              <Item>
-                <Foto src={item.foto} />
-                <Card>
-                  <Nome>{item.nome}</Nome>
-                  <Valor>
-                    {`${FormatadorService.valorMonetario(item.valor_hora)}
-                  por hora`}
-                  </Valor>
-                  <Descricao>
-                    {FormatadorService.limitarTexto(item.descricao, 42)}...
-                  </Descricao>
-                </Card>
-              </Item>
+                </Box>
+                </CardContent>
+              </Card>
             </ItemLista>
           ))}
         </ListaContainer>
